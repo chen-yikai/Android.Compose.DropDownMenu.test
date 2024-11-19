@@ -77,7 +77,7 @@ fun dropdown() {
     val focusRequester = FocusRequester()
     var expand by remember { mutableStateOf(false) }
     var input by remember { mutableStateOf("") }
-    var labels by remember { mutableStateOf(arrayListOf<String>()) }
+    var labels by remember { mutableStateOf(arrayListOf<String>("Label 1", "Label 2", "Label 3")) }
 //    var selected by remember { mutableStateOf("") }
 
 //    LaunchedEffect(selected) {
@@ -149,7 +149,7 @@ fun dropdown() {
                         Text(text = "$label", fontSize = 25.sp)
                         Spacer(Modifier.weight(1f))
                         Button(onClick = {
-                            labels.drop(index)
+                            labels = labels.filterIndexed { i, _ -> i != index }.toMutableList() as ArrayList<String>
                         }) {
                             Text(text = "Delete")
                         }
